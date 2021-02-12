@@ -1,0 +1,29 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem 2rem;
+    padding: 1rem;
+    background-color: #000;
+}
+
+.header .logoPanel a {
+    display: flex;
+    text-decoration: none;
+}
+
+.header .logo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: red;
+}
+
+.header .logo-api {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+}
+
+.header .loginPanel {
+    display: flex;
+    justify-content: flex-end;
+}
