@@ -9,9 +9,9 @@ const MainPage = () => {
 
 
     const handleSubmit = async (username: string) => {
-        const response = await youtube.get('/channels', {
+        const response = await youtube.get('/search', {
             params: {
-                forUsername: username
+                channelId : username
             }
         });
         console.log(response);
