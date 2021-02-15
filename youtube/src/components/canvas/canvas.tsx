@@ -2,71 +2,77 @@ import { useEffect } from 'react';
 
 import "./canvas.css";
 
+type m = {
+    x: number,
+    y: number
+}
+
 const Canvas = () => {
 
+    const m: m = {
+        x: window.innerWidth / 2,
+        y: window.innerHeight / 2
+    };
+
+    window.onmousemove = function(e: any) {
+        m.x = e.clientX;
+        m.y = e.clientY;
+    }
+
     useEffect(() => {
-        const canvas = document.getElementById('tutorial') as HTMLCanvasElement;
-        const ctx = canvas.getContext('2d');
-        canvas.width = canvas.offsetWidth;
-        canvas.height = canvas.offsetHeight;
 
-        const frog = new Image();
-        frog.src = 'https://static.wikia.nocookie.net/futurama/images/5/5d/%D0%93%D0%B8%D0%BF%D0%BD%D0%BE%D0%B6%D0%B0%D0%B1%D0%B0_002.jpg/revision/latest/scale-to-width-down/340?cb=20200426124148&path-prefix=ru';
-
-        ctx!.drawImage(frog, 0, 0);
-
-        window.addEventListener("mousemove", (e) => {
-            let x = e.clientX;
-            let y = e.clientY;
-
-            console.log(x + ' ' + y);
-
-            const arcctg = (x: number, y: number) => {
-                if (x > 0 && y > 0) return Math.PI / 2 - Math.atan(x / y);
-                if (x < 0 && y > 0) return Math.PI / 2 - Math.atan(x / y);
-                if (x < 0 && y < 0) return Math.PI + Math.atan(x / y);
-                if (x > 0 && y > 0) return 3 * Math.PI / 2 + Math.abs(Math.atan(x / y));
-            }
-
-            // drawPupil(x, y, 27, arcctg(x, y));
-        });
-
-        const drawEye = (x: number, y: number, radius: number) => {
+        const drawEye = (x: number, y: number) => {
             ctx!.beginPath();
-            ctx!.arc(x, y, radius, 0, Math.PI * 2, true);
+            ctx!.arc(x, y, 45, 0, Math.PI * 2, true);
             ctx!.fillStyle = "#BFAE3F";
             ctx!.fill();
             ctx!.closePath();
-        }
+        };
 
-        const drawPupil = (x: number, y: number, radius: number = 27, theta: any) => {
-            let pupilRadius = radius / 2.5;
+        // TODO rotate
+        const drawPupil = (x: number, y: number, angle: number) => {
             ctx!.beginPath();
-            ctx!.arc(x, y, pupilRadius, 0, Math.PI * 2, true);
+            ctx!.arc(x, y, 20, 0, Math.PI * 2, true);
             ctx!.fillStyle = "red";
+            ctx!.rotate(angle);
             ctx!.fill();
             ctx!.closePath();
-        }
+        };
 
-        const draw = (x: number, y: number, radius: number) => {
-            drawEye(x, y, radius);
-            drawPupil(x, y, radius, 0)
-        }
+        // init
+        const canvas = document.getElementById('canvas') as HTMLCanvasElement;
+        const ctx = canvas.getContext('2d');
+        const frog = new Image();
+        frog.src = 'https://content.spiceworksstatic.com/service.community/p/post_images/0000342654/5c421b5f/attached_image/Hypnor.jpg';
 
-        const arcctg = (x: number, y: number) => {
-            if (x > 0 && y > 0) return Math.PI / 2 - Math.atan(x / y);
-            if (x < 0 && y > 0) return Math.PI / 2 - Math.atan(x / y);
-            if (x < 0 && y < 0) return Math.PI + Math.atan(x / y);
-            if (x > 0 && y > 0) return 3 * Math.PI / 2 + Math.abs(Math.atan(x / y));
-        }
+        // clear
+        ctx!.clearRect(0, 0, canvas.width, canvas.height);
+        // update
+        ctx!.drawImage(frog, 0, 0);
+        drawEye(78, 54);
+        drawEye(225, 45);
+        drawPupil(78, 54, 0);
+        drawPupil(225, 45, 0);
 
-        draw(95, 54, 27);
-        draw(195, 45, 27);
-    }, []);
+        // render
+
+    });
+
+        // const draw = () => {
+        //     const canvas = document.getElementById('tutorial') as HTMLCanvasElement;
+        //     const ctx = canvas.getContext('2d');
+
+        //     let x = (canvas.getBoundingClientRect().left) + (canvas.clientWidth / 2);
+        //     let y = (canvas.getBoundingClientRect().top) + (canvas.clientHeight / 2);
+
+        //     ctx!.clearRect(0, 0, canvas.width, canvas.height);
+
+        //     console.log(x + ' ' + y);
+        // }
 
     return (
         <div className="wrap mt-5">
-            <canvas id="tutorial" width="340" height="340"></canvas>
+            <canvas id="canvas" width="350" height="350"></canvas>
         </div>
     )
 }
