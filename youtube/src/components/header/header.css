@@ -1,14 +1,9 @@
 .header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin: 2rem 2rem;
     padding: 1rem;
     background-color: #000;
-}
-
-.header .logoPanel a {
-    display: flex;
-    text-decoration: none;
 }
 
 .header .logo {
@@ -23,7 +18,7 @@
     color: #fff;
 }
 
-.header .loginPanel {
+.header .logoPanel a {
     display: flex;
-    justify-content: flex-end;
+    text-decoration: none;
 }
