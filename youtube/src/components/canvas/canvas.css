@@ -2,10 +2,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid black;
 }
 
 canvas {
-    border: 1px solid black;
+    border-radius: 10px;
     background-image: url("https://content.spiceworksstatic.com/service.community/p/post_images/0000342654/5c421b5f/attached_image/Hypnor.jpg");
 }
