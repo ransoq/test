@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Cookies from "universal-cookie";
+
 import youtube from '../../api/youtube';
 import Header from "../../components/header/header"
 import SearchBar from "../../components/searchBar/searchBar"
@@ -9,16 +11,22 @@ import Canvas from "../../components/canvas/canvas";
 const MainPage = () => {
 
     const [videos, setVideos] = useState<Video[]>([]);
-
+    const cookies = new Cookies();
 
     const handleSubmit = async (username: string) => {
-        const response = await youtube.get('/search', {
+        const response: any = youtube.get('/search', {
             params: {
                 channelId : username
             }
-        });
+        }).then((response: any) => setVideos(response.data.items))
+        .catch((error) => console.log(error));
         console.log(response);
-        setVideos(response.data.items);
+
+        // cookies
+        cookies.set('lastFoundedChannel', username, { path: '/' });
+        // localStorage
+        localStorage.clear();
+        localStorage.setItem('lastFoundedChannel', username);
     }
 
     return (
