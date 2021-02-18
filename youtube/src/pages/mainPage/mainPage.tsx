@@ -11,8 +11,6 @@ import Canvas from "../../components/canvas/canvas";
 
 const MainPage = () => {
 
-    console.log(React.version);
-
     const [videos, setVideos] = useState<Video[]>([]);
     const cookies = new Cookies();
 
@@ -23,7 +21,6 @@ const MainPage = () => {
             }
         }).then((response: any) => setVideos(response.data.items))
         .catch((error) => console.log(error));
-        console.log(response);
 
         // cookies
         cookies.set('lastFoundedChannel', username, { path: '/' });
@@ -35,7 +32,7 @@ const MainPage = () => {
     return (
         <>
             <Header />
-            <SearchBar handleFormSubmit={handleSubmit} />
+            <SearchBar handleFormSubmit={handleSubmit}/>
             <VideoList videos={videos}/>
             <Canvas />
         </>

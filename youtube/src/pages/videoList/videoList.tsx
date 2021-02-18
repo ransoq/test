@@ -1,4 +1,5 @@
 import VideoItem from "../videoItem/videoItem";
+import PropTypes from 'prop-types';
 import Video from '../../components/models/models';
 import "./videoList.css";
 
@@ -10,3 +11,7 @@ const VideoList = ({videos}: {videos: Video[]}) => {
 }
 
 export default VideoList;
+
+VideoList.propTypes = {
+    videos: PropTypes.arrayOf(PropTypes.object)
+}

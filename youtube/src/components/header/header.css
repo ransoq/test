@@ -18,6 +18,10 @@
     color: #fff;
 }
 
+.header .logoPanel {
+    display: flex;
+}
+
 .header .logoPanel a {
     display: flex;
     text-decoration: none;

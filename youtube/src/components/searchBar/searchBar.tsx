@@ -1,4 +1,5 @@
 import { useState, FC } from 'react';
+import PropTypes from 'prop-types';
 
 import './searchBar.css';
 
@@ -40,3 +41,7 @@ const SearchBar: FC<propsType> = (props) => {
 }
 
 export default SearchBar;
+
+SearchBar.propTypes = {
+    handleFormSubmit: PropTypes.func
+}

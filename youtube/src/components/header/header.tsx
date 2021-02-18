@@ -6,10 +6,10 @@ const Header = () => {
     return (
         <header className="header row">
         <div className="logoPanel">
-          <Link to="/">
-            <div className="logo">YouTube</div>
-            <div className="logo-api ml-2">API</div>
-          </Link>
+            <a href='/'>
+                <div className="logo">YouTube</div>
+                <div className="logo-api ml-2">API</div>
+            </a>
         </div>
       </header>
     )
