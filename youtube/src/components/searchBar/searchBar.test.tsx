@@ -1,20 +1,38 @@
 import React from "react";
 import SearchBar from "./searchBar";
-import {shallow} from "enzyme";
+import Adapter from 'enzyme-adapter-react-16';
+import {shallow, configure} from "enzyme";
+
+configure({adapter: new Adapter()});
 
 describe("Testing <SearchBar />", () => {
-    it("should save cookie after submit", () => {
-        const value = "UCE9ODjNIkOHrnSdkYWLfYhg"
-        const onSubmit = jest.fn();
-        const wrapper = shallow(<SearchBar handleFormSubmit={onSubmit} />)
+
+    const onSubmit = jest.fn();
+
+    it("SearchBar have rendered correctly", () => {
+        const wrapper = shallow(<SearchBar handleFormSubmit={onSubmit}/>);
 
         expect(wrapper).toMatchSnapshot();
+    });
 
-        wrapper.find('button').simulate('submit', {target: {value}});
-        expect(onSubmit).toBe(value);
+    it("cookies are empty", () => {
+        const wrapper = shallow(<SearchBar handleFormSubmit={onSubmit}/>);
+
         Object.defineProperty(window.document, 'cookie', {
             writable: true,
-            value: `lastFoundedChannel=UCE9ODjNIkOHrnSdkYWLfYhg`,
+            value: ``,
+        });
+    });
+
+    it("should save cookie after submit", () => {
+        const wrapper = shallow(<SearchBar handleFormSubmit={onSubmit}/>);
+        const value = "UCE9ODjNIkOHrnSdkYWLfYhg";
+        const fakeEvent = { preventDefault: () => console.log('preventDefault') };
+
+        wrapper.find('button').simulate('submit', fakeEvent);
+        Object.defineProperty(window.document, 'cookie', {
+            writable: true,
+            value: `lastFoundedChannel={value}`,
         });
     });
 });

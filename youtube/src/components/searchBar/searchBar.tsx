@@ -8,7 +8,7 @@ type propsType = {
 
 const SearchBar: FC<propsType> = (props) => {
 
-    const [username, setUsername] = useState('');
+    const [username, setUsername] = useState<string>('');
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setUsername(e.target.value);
