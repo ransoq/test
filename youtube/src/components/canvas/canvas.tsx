@@ -39,7 +39,7 @@ const Canvas = () => {
             let b = mouseY - canvas.getBoundingClientRect().top - y;
             let theta = Math.atan2(b, a);
             let px = x + Math.cos(theta) * pupilRadius / 1.9;
-            let py = y + Math.sin(theta) * pupilRadius / 1;
+            let py = y + Math.sin(theta) * pupilRadius / 1.9;
 
             ctx!.beginPath();
             ctx!.arc(
@@ -78,7 +78,9 @@ const Canvas = () => {
 
     return (
         <div className="wrap mt-5">
-            <canvas id="canvas" width="600" height="460"></canvas>
+            <canvas id="canvas" width="600" height="460">
+
+            </canvas>
         </div>
     )
 }

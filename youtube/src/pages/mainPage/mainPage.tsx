@@ -1,4 +1,5 @@
-import { useState } from "react";
+import React, { useState } from "react";
+
 import Cookies from "universal-cookie";
 
 import youtube from '../../api/youtube';
@@ -9,6 +10,8 @@ import Video from "../../components/models/models";
 import Canvas from "../../components/canvas/canvas";
 
 const MainPage = () => {
+
+    console.log(React.version);
 
     const [videos, setVideos] = useState<Video[]>([]);
     const cookies = new Cookies();
