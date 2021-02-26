@@ -5,7 +5,7 @@ import "./canvas.css";
 const Canvas = () => {
 
     const [mouseX, setX] = useState(0),
-        [mouseY, setY] = useState(0);
+          [mouseY, setY] = useState(0);
 
     useEffect(() => {
 

@@ -5,6 +5,7 @@ import './videoItem.css';
 const VideoItem = ({video}: {video: Video}) => {
     const url: string = "https://www.youtube.com/embed/";
     const watch: string = "https://www.youtube.com/watch?v=";
+
     return (
         <div className="video_item">
             <a href={watch+video.id.videoId}>

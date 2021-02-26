@@ -25,15 +25,16 @@ const SearchBar: FC<propsType> = (props) => {
             <p>Enter Channel ID</p>
             <form onSubmit={handleSubmit} className="form">
                 <div className="fields">
-                    <label htmlFor="userSearch"></label>
+                    <label htmlFor="userSearch">
+                    </label>
                     <input
                         placeholder="example: 'UCK8sQmJBp8GCxrOtXWBpyEA'"
                         onChange={handleChange}
                         name="userSearch"
                         type="text" />
                     <button 
-                        className="btn btn-danger btn-sm ml-3" 
-                        type="submit">Submit</button>
+                        className="btn btn-danger btn-sm"
+                        type="submit">Show channels</button>
                 </div>
             </form>
         </div>

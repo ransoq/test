@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 
 import Cookies from "universal-cookie";
+import Video from "../../components/models/models";
 
-import youtube from '../../api/youtube';
 import Header from "../../components/header/header"
 import SearchBar from "../../components/searchBar/searchBar"
 import VideoList from "../videoList/videoList";
-import Video from "../../components/models/models";
 import Canvas from "../../components/canvas/canvas";
+import youtube from '../../api/youtube';
 
 const MainPage = () => {
 
@@ -15,17 +15,17 @@ const MainPage = () => {
     const cookies = new Cookies();
 
     const handleSubmit = async (username: string) => {
-        const response: any = youtube.get('/search', {
+        const response: Promise<void> = youtube.get('/search', {
             params: {
                 channelId : username
             }
         }).then((response: any) => setVideos(response.data.items))
-        .catch((error) => console.log(error));
+        .catch(error => console.log(error));
 
         // cookies
         cookies.set('lastFoundedChannel', username, { path: '/' });
+
         // localStorage
-        localStorage.clear();
         localStorage.setItem('lastFoundedChannel', username);
     }
 
